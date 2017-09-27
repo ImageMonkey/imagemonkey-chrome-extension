@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+
+  "name": "Imagemonkey Extension",
+  "description": "Help us to grow our public image dataset whenever you open a new tab",
+  "version": "1.0",
+
+  "browser_action": {
+   "default_icon": "icon.png"
+  },
+  "chrome_url_overrides": {
+    "newtab": "main.html"
+  },
+  "permissions": [
+   "activeTab"
+   ]
+}
