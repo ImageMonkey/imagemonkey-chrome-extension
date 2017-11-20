@@ -139,7 +139,7 @@ function showMeSomething(frequency, lastShownTimestamp){
   var isEnabled = isEnabledForWeekday(date.getDay());
   if(isEnabled){
     if(showNext(frequency, lastShownTimestamp)){
-      $("#container").attr("src", "https://imagemonkey.io/verify?show_header=false&show_footer=false");
+      $("#container").attr("src", "https://imagemonkey.io/verify?show_header=false&show_footer=false&only_once=true");
       saveLastShownTimestamp((date.getTime()/1000));
     }
   }
