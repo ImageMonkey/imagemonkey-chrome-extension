@@ -5,6 +5,11 @@
   "description": "Help us to grow our public image dataset whenever you open a new tab",
   "version": "1.0",
 
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+
   "browser_action": {
    "default_icon": "icon.png"
   },
@@ -12,6 +17,7 @@
     "newtab": "main.html"
   },
   "permissions": [
+   "storage",
    "activeTab"
    ]
 }

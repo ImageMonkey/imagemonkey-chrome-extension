@@ -1,11 +1,182 @@
 <html>
 <head>
 
+	<script src="dist/jquery/jquery.min.js"></script> 
+	<link rel="stylesheet" href="dist/semantic-ui/semantic.min.css"/>
+	<script src="dist/semantic-ui/semantic.min.js"></script> 
+
+	<script type="text/javascript" src="dist/semantic-ui-calendar/calendar.min.js"></script>
+	<link rel="stylesheet" href="dist/semantic-ui-calendar/calendar.min.css" />
+
+	<script src="main.js"></script>
+	<style>
+		#settingsButton {
+			margin-top: 10px;
+			margin-right: 10px;
+			position:absolute;
+			top:0;
+			right:0;
+		}
+
+		/*#datacontainer {
+			display: none;
+			visibility:hidden;
+		}*/
+	</style>
+
 </head>
 
 <body>
+	<button class="ui positive button" id="settingsButton">
+		<i class="settings icon"></i>
+		Settings
+	</button>
 
-<p align="center"><iframe id="container" src="http://127.0.0.1:8080/verify?show_header=false&show_footer=false" width="800" height="1000" scrolling="no" frameborder="0"></iframe></p>
+	<div class="datacontainer">
+		<p align="center"><iframe id="container" src="" width="600" height="1300" scrolling="no" frameborder="0"></iframe></p>
+
+
+		<div class="ui longer modal" id="settingsDlg">
+			<i class="close icon"></i>
+			<div class="center aligned header">
+				ImageMonkey Settings
+			</div>
+			<div class="content">
+
+				<div class="ui grid container">
+					<p>I want to see images on...</p>
+					<div class="ui row">
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="mondayCheckbox">
+								<input checked="" type="checkbox">
+								<label>Mo</label>	
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="tuesdayCheckbox">
+								<input checked="" type="checkbox">
+								<label>Tue</label>
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="wednesdayCheckbox">
+								<input checked="" type="checkbox">
+								<label>Wed</label>
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="thursdayCheckbox">
+								<input checked="" type="checkbox">
+								<label>Thu</label>
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="fridayCheckbox">
+				  				<input checked="" type="checkbox">
+				  				<label>Fri</label>
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="saturdayCheckbox">
+				  				<input checked="" type="checkbox">
+				  				<label>Sat</label>
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<div class="ui checked checkbox" id="sundayCheckbox">
+				  				<input checked="" type="checkbox">
+				  				<label>Sun</label>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="ui row">
+						<div class="two wide column">
+							<p>between</p>
+						</div>
+						
+						<div class="four wide column">
+							<div class="ui calendar" id="beginTime">
+						    	<div class="ui input left icon">
+						      		<i class="time icon"></i>
+						      		<input type="text" placeholder="Time">
+						    	</div>
+						  	</div>
+						</div>
+
+						<div class="one wide column">
+						</div>
+						<div class="two wide column">
+							<p>and</p>
+						</div>
+
+
+						<div class="four wide column">
+							<div class="ui calendar" id="endTime">
+						    	<div class="ui input left icon">
+						      		<i class="time icon"></i>
+						      		<input type="text" placeholder="Time">
+						    	</div>
+						  	</div>
+						</div>
+					</div>
+
+
+					<div class="ui row">
+						<div class="two wide column">
+							<p>every</p>
+						</div>
+
+						<div class="four wide column">
+							<div class="ui input" >
+		  						<input placeholder="Frequency" type="text" id="frequency">
+							</div>
+						</div>
+
+						<div class="two wide column">
+							<p>minutes</p>
+						</div>
+
+					</div>
+
+					<div class="ui row">
+						<div class="ui warning message" id="timeValidationError">
+						  <i class="close icon"></i>
+						  <div class="header">
+						    Begin time can't be greater than end time!
+						  </div>
+						</div>
+					</div>
+
+					<div class="ui row">
+						<div class="ui warning message" id="frequencyValidationError">
+						  <i class="close icon"></i>
+						  <div class="header">
+						    Please provide a valid frequency!
+						  </div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="actions">
+				<div class="ui black deny button" id="cancelSettingsButton">
+					Cancel
+				</div>
+				<div class="ui positive right labeled icon button" id="saveSettingsButton">
+					Save
+					<i class="checkmark icon"></i>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 </body>
