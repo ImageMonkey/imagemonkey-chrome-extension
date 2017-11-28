@@ -10,7 +10,15 @@
 
 	<script src="main.js"></script>
 	<style>
-		#settingsButton {
+		#numOfValidations {
+			margin-top: 10px;
+			margin-left: 10px;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+
+		#showMeNowButton {
 			margin-top: 10px;
 			margin-right: 10px;
 			position:absolute;
@@ -18,18 +26,26 @@
 			right:0;
 		}
 
-		/*#datacontainer {
-			display: none;
-			visibility:hidden;
-		}*/
+		#settingsButton {
+			margin-top: 10px;
+			margin-right: 150px;
+			position:absolute;
+			top:0;
+			right:0;
+		}
 	</style>
 
 </head>
 
 <body>
-	<button class="ui positive button" id="settingsButton">
+	<h1 hidden id="numOfValidations" count="">#0</h1>
+	<button class="ui button" id="settingsButton">
 		<i class="settings icon"></i>
 		Settings
+	</button>
+	<button class="ui positive button" id="showMeNowButton">
+		<i class="refresh icon"></i>
+		Show Me
 	</button>
 
 	<div class="datacontainer">

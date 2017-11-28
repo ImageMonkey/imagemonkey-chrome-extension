@@ -40,7 +40,8 @@ function loadSettings() {
     friday: true,
     saturday: true,
     sunday: true,
-    lastShownTimestamp: -1
+    lastShownTimestamp: -1,
+    numOfValidations: 0
   }, function(items) {
     setCheckBox("#mondayCheckbox", items.monday);
     setCheckBox("#tuesdayCheckbox", items.tuesday);
@@ -53,10 +54,17 @@ function loadSettings() {
 
     $("#beginTime").calendar("set date", getDateFromTimeStr(items.beginTime));
     $("#endTime").calendar("set date", getDateFromTimeStr(items.endTime));
+    setNumOfValidations(items.numOfValidations);
+    $("#numOfValidations").show();
 
     showMeSomething(items.frequency, items.lastShownTimestamp);
 
   });
+}
+
+function setNumOfValidations(numOfValidations){
+  $("#numOfValidations").text(("#"+numOfValidations.toString()));
+  $("#numOfValidations").attr("count", numOfValidations);
 }
 
 function saveSettings(){
@@ -77,6 +85,10 @@ function saveSettings(){
 
 function saveLastShownTimestamp(lastShownTimestamp){
   chrome.storage.local.set({lastShownTimestamp: lastShownTimestamp});
+}
+
+function saveNumOfValidations(numOfValidations){
+  chrome.storage.local.set({numOfValidations: numOfValidations});
 }
 
 function isEnabledForWeekday(weekday){
@@ -139,17 +151,37 @@ function showMeSomething(frequency, lastShownTimestamp){
   var isEnabled = isEnabledForWeekday(date.getDay());
   if(isEnabled){
     if(showNext(frequency, lastShownTimestamp)){
-      $("#container").attr("src", "https://imagemonkey.io/verify?show_header=false&show_footer=false&only_once=true");
+      //$("#container").attr("src", "http://127.0.0.1:8080/verify?show_header=false&show_footer=false&only_once=true&callback=true&browser_extension=true");
+      $("#container").attr("src", "https://imagemonkey.io/verify?show_header=false&show_footer=false&only_once=true&callback=true&browser_extension=true");
       saveLastShownTimestamp((date.getTime()/1000));
     }
   }
 }
 
+function receiveMessage(event){
+  //if (event.origin !== "http://127.0.0.1:8080"){
+  if (event.origin !== "https://imagemonkey.io"){
+    console.log("received a different origin than expected " +event.origin)
+    return;
+  }
+
+  if(event.data === "done button pressed"){ //update num of validations
+    var numOfValidations = parseInt($("#numOfValidations").attr("count"), 10) + 1;
+    saveNumOfValidations(numOfValidations);
+    setNumOfValidations(numOfValidations);
+  }
+  else{
+    console.log("received a different message than expected")
+  }
+}
 
 $(document).ready(function(){
   $("#timeValidationError").hide();
   $("#frequencyValidationError").hide();
+
   loadSettings();
+
+  top.window.addEventListener("message", receiveMessage, false);
 
 	$('#beginTime').calendar({
 	  type: 'time',
@@ -170,6 +202,10 @@ $(document).ready(function(){
 	$("#settingsButton").click(function(e) {
 		$('#settingsDlg').modal('setting', { detachable:false }).modal('show');
 	});
+
+  $("#showMeNowButton").click(function(e) {
+    $("#container").attr("src", "https://imagemonkey.io/verify?show_header=false&show_footer=false&only_once=true&callback=true&browser_extension=true");
+  });
 
   $("#saveSettingsButton").click(function(e) {
     e.preventDefault();
