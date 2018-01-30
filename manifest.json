@@ -3,7 +3,13 @@
 
   "name": "ImageMonkey Extension",
   "description": "Help us to grow our public image dataset whenever you open a new tab",
-  "version": "1.0",
+  "version": "1.0.2",
+
+  "applications": {
+    "gecko": {
+      "strict_min_version": "54.0"
+    }
+  },
 
   "browser_action": {
    "default_icon": "icons/icon.png"
