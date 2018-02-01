@@ -1,0 +1,4 @@
+used third party libraries:
+
+Semantic-UI (version 2.2.13): https://github.com/Semantic-Org/Semantic-UI/releases/tag/2.2.13
+Semantic-UI-Calendar (version 0.0.8): https://github.com/mdehoog/Semantic-UI-Calendar/releases/tag/0.0.8

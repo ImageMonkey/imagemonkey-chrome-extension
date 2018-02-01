@@ -3,7 +3,7 @@
 
   "name": "ImageMonkey Extension",
   "description": "Help us to grow our public image dataset whenever you open a new tab",
-  "version": "1.0.2",
+  "version": "1.0.3",
 
   "applications": {
     "gecko": {
